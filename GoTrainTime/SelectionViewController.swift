@@ -11,7 +11,7 @@ import UIKit
 class SelectionViewController: UIViewController {
     
     var fromField: UITextField!
-    var verticalCon: NSLayoutConstraint!
+    var verticalConForFromField: NSLayoutConstraint!
     
 
     override func viewDidLoad() {
@@ -21,7 +21,7 @@ class SelectionViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        verticalCon.constant = 0
+        verticalConForFromField.constant = 0
         UIView.animate(withDuration: 2.0, animations: {
             self.view.layoutIfNeeded()
         })
@@ -30,14 +30,16 @@ class SelectionViewController: UIViewController {
     func addFromField(){
         fromField = UITextField()
         fromField.placeholder = "From"
+        fromField.backgroundColor = UIColor.gray
+        fromField.textColor = UIColor.orange
         let horizontalCon = NSLayoutConstraint(item: fromField, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
-        verticalCon = NSLayoutConstraint(item: fromField, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: -500)
+        verticalConForFromField = NSLayoutConstraint(item: fromField, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: -500)
         let widthCon = NSLayoutConstraint(item: fromField, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 100)
-        let heightCon = NSLayoutConstraint(item: fromField, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 20)
+        let heightCon = NSLayoutConstraint(item: fromField, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 30)
         
         fromField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(fromField)
-        view.addConstraints([horizontalCon, verticalCon, widthCon, heightCon])
+        view.addConstraints([horizontalCon, verticalConForFromField, widthCon, heightCon])
     }
 
     override func didReceiveMemoryWarning() {
